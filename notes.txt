@@ -1,0 +1,20 @@
+- Using Composition Api style
+- Packages:
+pinia
+vue-router
+sass
+
+- Add directory structure like Shop project
+- Remove unused components
+- add store and router config
+- Consider default layout
+
+- VCS: Git
+- Navbar: just home and courses/teachers
+- Pagination for courses
+
+- Use sass and its rules for styling
+- Remove articles section
+- Pay attention to scroll to top in footer
+
+
