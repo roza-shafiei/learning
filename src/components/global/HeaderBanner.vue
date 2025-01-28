@@ -103,6 +103,10 @@ const bannerImgSrs = {
     flex-direction: column;
     gap: toRem(16);
 
+    p {
+      color: var(--color-black-600);
+    }
+
     h1, p {
       text-align: center;
     }
