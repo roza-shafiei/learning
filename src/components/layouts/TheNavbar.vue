@@ -15,9 +15,10 @@ const { isSmDown } = useWindowResize()
         <RouterLink to="/">home</RouterLink>
         <RouterLink to="/courses">courses</RouterLink>
       </ul>
-      <div>
-        <!--        Login section-->
-        <RouterLink v-if="!isSmDown" to="/auth">
+      <!--        Login section-->
+      <div class="navbar__login">
+        <img v-if="isSmDown" alt="profile-icon" src="/assets/icons/profile.png" />
+        <RouterLink v-else to="/auth">
           Login / Register
         </RouterLink>
       </div>
@@ -39,6 +40,12 @@ const { isSmDown } = useWindowResize()
     align-items: center;
     justify-content: space-between;
     gap: toRem(10);
+  }
+
+  &__login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__links {
