@@ -1,0 +1,12 @@
+h1 {
+  font-weight: bold;
+  line-height: 1;
+  font-size: toRem(40);
+
+  @include mq(md) {
+    font-size: toRem(46);
+  }
+  @include mq(xl) {
+    font-size: toRem(60);
+  }
+}
