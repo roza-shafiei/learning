@@ -10,3 +10,16 @@ h1 {
     font-size: toRem(60);
   }
 }
+
+h2 {
+  font-weight: bold;
+  line-height: 1;
+  font-size: toRem(26);
+
+  @include mq(md) {
+    font-size: toRem(32);
+  }
+  @include mq(xl) {
+    font-size: toRem(40);
+  }
+}

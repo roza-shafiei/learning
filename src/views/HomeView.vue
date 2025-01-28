@@ -1,14 +1,16 @@
 <script setup>
-
+import TitleCard from '@/components/global/TitleCard.vue'
 </script>
 
 <template>
-  <div class="home">
-    Hi Roza, Check your Font, Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error illo
-    in incidunt ipsum numquam recusandae vel voluptas? Repudiandae, tempora, ut?
-  </div>
+  <main class="home max-content">
+    <TitleCard desc="Explore our Popular Categories"
+               title="Top Categories" />
+  </main>
 </template>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.home {
+  margin-top: toRem(90);
+}
 </style>
