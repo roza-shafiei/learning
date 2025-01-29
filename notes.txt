@@ -17,4 +17,10 @@ sass
 - Remove articles section
 - Pay attention to scroll to top in footer
 
+Todos:
+-list courses
+-view course and teacher details
+-register as a coach
+-contact a coach => coachId, message, email
+-routes: courses /course:id/home/notfound
 
