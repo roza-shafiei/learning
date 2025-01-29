@@ -37,10 +37,18 @@ with LearnPress LMS" src="/assets/images/home/grow-skill.png">
   width: 100%;
   display: flex;
   gap: toRem(16);
+  flex-direction: column;
   justify-content: space-between;
 
+  @include mq(lg) {
+    flex-direction: row;
+  }
+
   .img-container {
-    width: 50%;
+    width: 100%;
+    @include mq(lg) {
+      width: 50%;
+    }
 
     img {
       width: 100%;
@@ -50,7 +58,10 @@ with LearnPress LMS" src="/assets/images/home/grow-skill.png">
   }
 
   .content {
-    width: 44%;
+    width: 100%;
+    @include mq(lg) {
+      width: 44%;
+    }
 
     &__title {
       font-size: toRem(32);

@@ -41,11 +41,13 @@ const props = defineProps({
 
 
   &__content {
+    position: relative;
+    z-index: 3;
     gap: toRem(8);
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 70%;
+    max-width: 80%;
 
     @include mq(sm) {
       max-width: 60%;
@@ -78,14 +80,27 @@ const props = defineProps({
     position: absolute;
 
     &--yellow {
-      right: 0;
+      right: -35%;
       bottom: 0;
+      @include mq(sm) {
+        right: -15%;
+      }
+      @include mq(lg) {
+        right: 0;
+      }
     }
 
     &--blue {
-      left: 0;
+      left: -35%;
       top: 50%;
       transform: translateY(-50%);
+
+      @include mq(sm) {
+        left: -15%;
+      }
+      @include mq(lg) {
+        left: 0;
+      }
     }
   }
 }
