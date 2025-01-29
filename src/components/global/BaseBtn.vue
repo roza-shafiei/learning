@@ -21,5 +21,12 @@ const props = defineProps({
   border-radius: toRem(24);
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: inset 0 0 0 2em var(--color-secondary);
+
+  }
+
 }
 </style>

@@ -18,8 +18,8 @@ const { isSmDown } = useWindowResize()
       <!--        Login section-->
       <div class="navbar__login">
         <img v-if="isSmDown" alt="profile-icon" src="/assets/icons/profile.png" />
-        <RouterLink v-else to="/auth">
-          Login / Register
+        <RouterLink v-else class="base-btn" to="/auth">
+          Register as a Teacher
         </RouterLink>
       </div>
     </div>
@@ -31,6 +31,7 @@ const { isSmDown } = useWindowResize()
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.5rem 0;
 
 
   &--wrapper {
@@ -63,7 +64,6 @@ const { isSmDown } = useWindowResize()
 
 
 .navbar__links .router-link-exact-active {
-  background-color: var(--color-white-200);
   color: var(--color-primary);
   transition: all 0.2s;
 }
