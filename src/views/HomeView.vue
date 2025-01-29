@@ -6,6 +6,7 @@ import BaseBanner from '@/components/pages/home/BaseBanner.vue'
 import { computed } from 'vue'
 import StaticList from '@/components/pages/home/StaticList.vue'
 import GrowSkillCard from '@/components/pages/home/GrowSkillCard.vue'
+import CenterContentBanner from '@/components/pages/home/CenterContentBanner.vue'
 
 // Computed Properties
 const bannerContent = computed(() => {
@@ -13,6 +14,15 @@ const bannerContent = computed(() => {
     title: 'LearnPress Add-Ons',
     moreTxt: 'GET MORE POWER FROM',
     desc: 'The next level of LearnPress - LMS WordPress Plugin. More Powerful, Flexible and Magical Inside.',
+    btnTxt: 'Explorer course',
+    btnUrl: '/'
+  }
+})
+const centerBannerContent = computed(() => {
+  return {
+    title: 'education wordpress theme',
+    moreTxt: 'PROVIDING AMAZING',
+    desc: 'The next level of LMS WordPress Theme. Learn anytime and anywhere.',
     btnTxt: 'Explorer course',
     btnUrl: '/'
   }
@@ -30,6 +40,7 @@ const bannerContent = computed(() => {
     <BaseBanner :item="bannerContent" class="base-banner" />
     <StaticList />
     <GrowSkillCard />
+    <CenterContentBanner :item="centerBannerContent" />
   </main>
 </template>
 
