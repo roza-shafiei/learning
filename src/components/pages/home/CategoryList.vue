@@ -23,10 +23,10 @@ const catList = computed(() => {
 <style lang="scss" scoped>
 .category-list {
   display: grid;
-  column-gap: toRem(8);
+  column-gap: toRem(16);
   row-gap: toRem(20);
-  place-items: center;
   margin-top: toRem(50);
+  place-items: center;
   grid-template-columns: 1fr;
 
   @include mq(sm) {
