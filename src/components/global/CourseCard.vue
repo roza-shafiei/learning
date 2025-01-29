@@ -34,7 +34,7 @@ const backgroundStyle = computed(() => ({
       class="course-card__img"
     />
     <div class="course-card__content">
-      <p class="course-card__writer">{{ teacher }}</p>
+      <p class="course-card__teacher">{{ teacher }}</p>
       <h3 class="course-card__title">{{ props.item.title }}</h3>
       <div class="course-card__stats">
         <div class="course-card__stat-item">
@@ -98,8 +98,8 @@ const backgroundStyle = computed(() => ({
     gap: toRem(12);
   }
 
-  &__writer {
-    color: var(--color-black-600);
+  &__teacher {
+    color: var(--color-black-200);
     font-size: toRem(14);
   }
 
@@ -127,7 +127,7 @@ const backgroundStyle = computed(() => ({
 
     span {
       font-size: toRem(14);
-      color: #666;
+      color: var(--color-black-300);
     }
   }
 
@@ -155,11 +155,13 @@ const backgroundStyle = computed(() => ({
 
     p {
       font-weight: 500;
+      color: var(--color-black-200);
+
     }
   }
 }
 
 .green-text {
-  color: var(--color-success);
+  color: var(--color-success) !important;
 }
 </style>
