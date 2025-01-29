@@ -22,9 +22,9 @@ const courses = computed(() => {
 .icon-card {
   border: 1px solid var(--color-white-200);
   border-radius: toRem(24);
-  max-width: toRem(210);
+  max-width: toRem(205);
   width: 100%;
-  height: toRem(210);
+  height: toRem(205);
   display: flex;
   flex-direction: column;
   align-items: center;

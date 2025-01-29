@@ -23,8 +23,19 @@ const catList = computed(() => {
 <style lang="scss" scoped>
 .category-list {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
+  column-gap: toRem(8);
+  row-gap: toRem(20);
+  place-items: center;
   margin-top: toRem(50);
+  grid-template-columns: 1fr;
+
+  @include mq(sm) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 3fr;
+  }
+  @include mq(lg) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+  }
 }
 </style>
