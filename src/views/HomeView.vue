@@ -7,6 +7,7 @@ import { computed } from 'vue'
 import StaticList from '@/components/pages/home/StaticList.vue'
 import GrowSkillCard from '@/components/pages/home/GrowSkillCard.vue'
 import CenterContentBanner from '@/components/pages/home/CenterContentBanner.vue'
+import HeaderBanner from '@/components/global/HeaderBanner.vue'
 
 // Computed Properties
 const bannerContent = computed(() => {
@@ -30,22 +31,25 @@ const centerBannerContent = computed(() => {
 </script>
 
 <template>
-  <main class="home max-content">
-    <TitleCard desc="Explore our Popular Categories"
-               title="Top Categories" />
-    <CategoryList />
-    <TitleCard btn-txt="All courses"
-               desc="Explore our Popular Courses" title="Featured courses" />
-    <CourseList />
-    <BaseBanner :item="bannerContent" class="base-banner" />
-    <StaticList />
-    <GrowSkillCard />
-    <CenterContentBanner :item="centerBannerContent" />
-  </main>
+  <section class="home">
+    <HeaderBanner />
+    <main class="home-content max-content">
+      <TitleCard desc="Explore our Popular Categories"
+                 title="Top Categories" />
+      <CategoryList />
+      <TitleCard btn-txt="All courses"
+                 desc="Explore our Popular Courses" title="Featured courses" />
+      <CourseList />
+      <BaseBanner :item="bannerContent" class="base-banner" />
+      <StaticList />
+      <GrowSkillCard />
+      <CenterContentBanner :item="centerBannerContent" />
+    </main>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.home {
+.home-content {
   margin-top: toRem(90);
   width: 100%;
 }

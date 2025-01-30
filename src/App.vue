@@ -1,11 +1,11 @@
 <script setup>
 
-import TheHeader from '@/components/layouts/TheHeader.vue'
 import TheFooter from '@/components/layouts/TheFooter.vue'
+import TheNavbar from '@/components/layouts/TheNavbar.vue'
 </script>
 
 <template>
-  <TheHeader />
+  <TheNavbar />
   <RouterView />
   <TheFooter />
 </template>
