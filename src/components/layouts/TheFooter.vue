@@ -96,8 +96,8 @@ export default {
 
 <template>
   <footer class="footer">
-    <div class="footer__wrapper ">
-      <div class="footer__middle ">
+    <div class="footer__wrapper">
+      <div class="footer__middle max-content">
         <div
           class="logo__container"
         >
@@ -203,12 +203,13 @@ export default {
     flex-direction: column;
     width: 100%;
     justify-content: space-between;
+    color: var(--color-black-300);
     align-items: start;
 
     @include mq(sm) {
       flex-direction: row;
       margin-bottom: 0;
-      max-width: 80%;
+      max-width: 70%;
     }
 
     &__item {
