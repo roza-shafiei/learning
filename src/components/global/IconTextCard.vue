@@ -1,17 +1,27 @@
 <script setup>
 import { computed } from 'vue'
 
+// Props
 const props = defineProps({
   item: Object
 })
 
+// Emits
+const emites = defineEmits(['cardClick'])
+
+// Computed Properties
 const courses = computed(() => {
   return props.item.courses + ' ' + 'Courses'
 })
+
+// Methods
+function clickOnCard() {
+  emites('cardClick', { cat: props.item.title })
+}
 </script>
 
 <template>
-  <div class="icon-card">
+  <div class="icon-card" @click="clickOnCard">
     <img :alt="props.item.title" :src="props.item.icon" class="icon-card__img" />
     <p class="icon-card__title">{{ props.item.title }}</p>
     <p class="icon-card__desc">{{ courses }}</p>
@@ -22,7 +32,6 @@ const courses = computed(() => {
 .icon-card {
   border: 1px solid var(--color-white-200);
   border-radius: toRem(24);
-  max-width: toRem(205);
   width: 100%;
   height: toRem(205);
   display: flex;
