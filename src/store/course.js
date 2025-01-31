@@ -29,7 +29,7 @@ export const useCourseStore = defineStore('course', () => {
       loading.value = true
       setTimeout(() => {
         courses.value = courseList
-      }, 500)
+      }, 200)
     } catch (err) {
       console.log('error in course store', err)
     } finally {
