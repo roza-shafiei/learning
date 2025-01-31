@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue'
+import BaseBadge from '@/components/global/BaseBadge.vue'
 
 // Props
 const props = defineProps({
@@ -58,7 +59,7 @@ const backgroundStyle = computed(() => ({
         <button>View More</button>
       </div>
     </div>
-
+    <BaseBadge :text="props.item.category" class="course-card__badge" />
   </article>
 </template>
 
@@ -72,7 +73,7 @@ const backgroundStyle = computed(() => ({
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-
+  position: relative;
 
   &:hover {
     transform: translateY(-10px);
@@ -81,6 +82,13 @@ const backgroundStyle = computed(() => ({
     .course-card__title {
       color: var(--color-primary);
     }
+  }
+
+  &__badge {
+    position: absolute;
+    z-index: 3;
+    top: 2%;
+    left: 2%;
   }
 
   &__img {
