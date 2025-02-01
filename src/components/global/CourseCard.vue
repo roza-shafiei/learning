@@ -29,9 +29,10 @@ const backgroundStyle = computed(() => ({
 
 <template>
   <article class="course-card">
-    <div
+    <RouterLink
       :aria-label="`${props.item.title} course image`"
       :style="backgroundStyle"
+      :to="`/courses/${props.item.id}`"
       class="course-card__img"
     />
     <div class="course-card__content">
