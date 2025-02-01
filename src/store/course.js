@@ -5,12 +5,15 @@ import courseList from '@/utils/courseList.js'
 export const useCourseStore = defineStore('course', () => {
   const courses = ref([])
   const loading = ref(false)
+  const activeFilter = ref(null)
 
   // Getters
   const categories = computed(() =>
     [...new Set(courses.value.map(course => course.category))]
   )
-
+  const courseInstructors = computed(() => {
+    return [...new Set(courses.value.map((course) => course.teacher))]
+  })
   const categoryCountStats = computed(() =>
     categories.value.map(category => ({
       title: category,
@@ -19,53 +22,67 @@ export const useCourseStore = defineStore('course', () => {
   )
 
   const bestCourses = computed(() => {
-    console.log('course value: ', courses)
     return courses.value.filter(item => item.students > 300)
   })
 
 // Actions
-  function getCourses() { //here getting course list from api is simulated
+  async function getCourses() {
+    if (courses.value.length > 0) return
+    loading.value = true
     try {
-      loading.value = true
-      setTimeout(() => {
-        courses.value = courseList
-      }, 200)
+      // Simulated API call
+      const response = await new Promise((resolve) => {
+        setTimeout(() => resolve(courseList), 200)
+      })
+      courses.value = response
     } catch (err) {
-      console.log('error in course store', err)
+      console.error('Error fetching courses:', err)
     } finally {
       loading.value = false
     }
   }
 
-  function getCoursesByCategory(category) {
-    return category
-      ? courses.value.filter(course => course.category === category)
-      : courses.value
+  function setFilters(payload) {
+    activeFilter.value = payload
   }
 
-  function addCourse(course) {
-    if (!course.id) {
-      const maxId = Math.max(...courses.value.map(c => c.id))
-      course.id = maxId + 1
+  function searchCourses(filters) {
+    let filteredCourses = courses.value
+
+    if (filters.category && filters.category.length > 0) {
+      filteredCourses = filteredCourses.filter(course =>
+        filters.category.includes(course.category)
+      )
+      console.log('filteredCourses', filteredCourses)
     }
-    courses.value.push(course)
+
+    if (filters.instructor && filters.instructor.length > 0) {
+      filteredCourses = filteredCourses.filter(course =>
+        filters.instructor.includes(course.teacher)
+      )
+    }
+
+    if (filters.price.length > 0) {
+      console.log('filteredPrice', filters.price)
+      if (filters.price.includes('free')) {
+        filteredCourses = filteredCourses.filter(course => course.price === 0)
+      } else {
+        filteredCourses = filteredCourses.filter(course => course.price > 0)
+      }
+    }
+    return filteredCourses
   }
 
-  function searchCourses(searchTerm) {
-    const term = searchTerm.toLowerCase()
-    return courses.value.filter(course =>
-      course.title.toLowerCase().includes(term) ||
-      course.teacher.toLowerCase().includes(term)
-    )
-  }
 
   return {
     courses,
     bestCourses,
-    getCoursesByCategory,
+    activeFilter,
     getCourses,
+    courseInstructors,
+    categories,
     searchCourses,
-    addCourse,
+    setFilters,
     categoryCountStats
   }
 })

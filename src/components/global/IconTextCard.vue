@@ -7,16 +7,16 @@ const props = defineProps({
 })
 
 // Emits
-const emites = defineEmits(['cardClick'])
+const emits = defineEmits(['cardClick'])
 
 // Computed Properties
 const courses = computed(() => {
-  return props.item.courses + ' ' + 'Courses'
+  return props.item.courseCount + ' ' + 'Courses'
 })
 
 // Methods
 function clickOnCard() {
-  emites('cardClick', { cat: props.item.title })
+  emits('cardClick', { cat: props.item.title })
 }
 </script>
 
