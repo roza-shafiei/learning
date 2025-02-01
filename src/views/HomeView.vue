@@ -8,10 +8,7 @@ import StaticList from '@/components/pages/home/StaticList.vue'
 import GrowSkillCard from '@/components/pages/home/GrowSkillCard.vue'
 import CenterContentBanner from '@/components/pages/home/CenterContentBanner.vue'
 import HeaderBanner from '@/components/global/HeaderBanner.vue'
-import { useCourseStore } from '@/store/course.js'
 
-// States
-const courseStore = useCourseStore()
 // Computed Properties
 const bannerContent = computed(() => {
   return {
@@ -31,9 +28,6 @@ const centerBannerContent = computed(() => {
     btnUrl: '/'
   }
 })
-
-// Methods
-courseStore.getCourses()
 </script>
 
 <template>

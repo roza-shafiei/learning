@@ -37,7 +37,7 @@ export default [{
     category: 'photography',
     title: 'THE Photography Masterclass: Complete Course on Photography',
     desc: 'Learn how to create amazing images for beginners & advanced photographers. The only photography course you need.',
-    teacher: 'Determined-Poitras',
+    teacher: 'Determined Poitras',
     duration: '2 Days',
     students: 1230,
     price: 0
