@@ -118,9 +118,8 @@ const filteredCourses = computed(() => {
   place-items: center;
   grid-template-columns: 1fr;
 
-  @include mq(sm) {
+  @include mq(md) {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 3fr;
   }
   @include mq(lg) {
     grid-template-columns: repeat(3, 1fr);
