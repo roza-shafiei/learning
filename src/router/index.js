@@ -1,19 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
-import CourseListView from '@/views/CourseListView.vue'
-import CourseIdView from '@/views/CourseIdView.vue'
 import { useCourseStore } from '@/store/course.js'
 
 const routes = [
   {
-    path: '', component: HomeView, alias: ['/', '/home'], meta: { title: 'Home' }
+    path: '',
+    component: () => import('@/views/HomeView.vue'),
+    alias: ['/', '/home'],
+    meta: { title: 'Home' }
   },
-  { path: '/courses', component: CourseListView, meta: { title: 'Courses' } },
+  {
+    path: '/courses',
+    component: () => import('@/views/CourseListView.vue'),
+    meta: { title: 'Courses' }
+  },
   {
     path: `/courses/:id`,
-    component: CourseIdView,
+    component: () => import('@/views/CourseIdView.vue'),
     meta: { title: 'Courses' },
-    name: 'course details'
+    name: 'courseDetails'
+  },
+  {
+    path: `/teacher/registration`,
+    component: () => import('@/views/teacher/TeacherRegisterView.vue'),
+    meta: { title: 'Registration' },
+    name: 'teacherRegistration'
   }
 ]
 

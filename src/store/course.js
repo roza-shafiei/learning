@@ -14,6 +14,9 @@ export const useCourseStore = defineStore('course', () => {
   const courseInstructors = computed(() => {
     return [...new Set(courses.value.map((course) => course.teacher))]
   })
+  const instructorId = computed(() => {
+    return [...new Set(courses.value.map((course) => course.teacherId))]
+  })
   const categoryCountStats = computed(() =>
     categories.value.map(category => ({
       title: category,
@@ -83,6 +86,7 @@ export const useCourseStore = defineStore('course', () => {
     categories,
     searchCourses,
     setFilters,
+    instructorId,
     categoryCountStats
   }
 })
