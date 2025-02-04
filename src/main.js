@@ -5,6 +5,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { pinia } from '@/store/index.js'
 import { defaultConfig, plugin } from '@formkit/vue'
+import '@formkit/themes/genesis'
 
 
 const app = createApp(App)
