@@ -23,4 +23,10 @@ Todos:
 -register as a coach
 -contact a coach => coachId, message, email
 -routes: courses /course:id/home/notfound
+- animate main pages
+- register as a coach btn => you are login and you are not teacher
+- if you are not login => login btn must be shown
+- show a page for teacher list with a contact btn
+- add loading css for btn
+-auth: try login, login, signup, log out
 
