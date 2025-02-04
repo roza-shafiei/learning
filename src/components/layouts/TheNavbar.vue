@@ -18,7 +18,7 @@ const { isSmDown } = useWindowResize()
       <!--        Login section-->
       <div class="navbar__login">
         <img v-if="isSmDown" alt="profile-icon" src="/assets/icons/profile.png" />
-        <RouterLink v-else class="base-btn" to="/auth">
+        <RouterLink v-else class="base-btn" to="/teacher/registration">
           Register as a Teacher
         </RouterLink>
       </div>
@@ -27,6 +27,10 @@ const { isSmDown } = useWindowResize()
 </template>
 
 <style lang="scss" scoped>
+.base-btn {
+  @include base-btn;
+}
+
 .navbar {
   display: flex;
   align-items: center;
