@@ -22,7 +22,9 @@
 
 
 @mixin base-btn {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--color-primary);
   color: var(--color-white-100);
   padding: toRem(12) toRem(24);
@@ -30,6 +32,7 @@
   outline: none;
   border-radius: toRem(24);
   font-weight: 600;
+  min-width: toRem(80);
   cursor: pointer;
   transition: all 0.3s;
 
