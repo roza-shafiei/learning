@@ -7,6 +7,7 @@ import TeacherCard from '@/components/pages/teachers/TeacherCard.vue'
 const loading = ref(false)
 const baseURL = import.meta.env.VITE_BASE_URL
 const teacherList = ref([])
+const activeTeacherId = ref(null)
 
 // Lifecycle hook
 onMounted(() => {
@@ -29,13 +30,28 @@ async function getTeacherList() {
     loading.value = false
   }
 }
+
+function handleContactClick(teacherId) {
+  activeTeacherId.value = teacherId
+}
+
+function handleFormSubmit() {
+  activeTeacherId.value = null
+}
 </script>
 
 <template>
   <main class="teachers-page max-content">
     <TheLoading v-if="loading" class="mx-auto" />
     <section v-else class="teachers">
-      <TeacherCard v-for="teacher in teacherList" :key="teacher.id" :item="teacher" />
+      <TeacherCard
+        v-for="teacher in teacherList"
+        :key="teacher.id"
+        :is-form-visible="activeTeacherId === teacher.id"
+        :item="teacher"
+        @contact-click="handleContactClick(teacher.id)"
+        @form-submit="handleFormSubmit"
+      />
     </section>
   </main>
 </template>

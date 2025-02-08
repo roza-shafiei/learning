@@ -1,35 +1,69 @@
 <script setup>
 import { ref } from 'vue'
+import BaseBtn from '@/components/global/BaseBtn.vue'
+import { reset } from '@formkit/core'
+import { useToast } from 'vue-toast-notification'
 
 // States
 const email = ref('')
 const message = ref('')
+const loading = ref(false)
+const $toast = useToast()
 
+
+// Props
+const props = defineProps({
+  id: String, Number
+})
 
 // Emits
 const emits = defineEmits(['submitForm'])
 
-// Methods
-function submitHandler() {
-  const payload = { email: email.value, message: message.value }
-  emits('submitForm', payload)
+async function submitRequest() {
+  try {
+    loading.value = true
+    const payload = {
+      email: email.value,
+      message: message.value,
+      teacherId: props.id
+    }
+    const res = await fetch(`https://edupress-701b9-default-rtdb.firebaseio.com/requests/${payload.teacherId}.json`, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    if (res.ok) {
+      emits('submitForm')
+      reset('contact-form')
+      $toast.success('Your message has been submitted successfully!', {
+        position: 'top-right'
+      })
+    }
+  } catch (e) {
+    console.error('Error in course id view:', e)
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 
 <template>
   <FormKit
-    id="registration-example"
+    id="contact-form"
     :actions="false"
-    class="form"
+    class="contact-form"
     type="form"
-    @submit="submitHandler"
+    @submit="submitRequest"
   >
     <p>Contact teacher and ask your questions</p>
     <FormKit
       v-model="email"
       label="Email"
       name="email"
-      placeholder="vikas@school.edu"
+      placeholder="roza_shafiei@yahoo.com"
       type="email"
       validation="required|email"
       validation-visibility="dirty"
@@ -37,58 +71,59 @@ function submitHandler() {
     <FormKit
       v-model="message"
       :validation-messages="{
-    length: 'Instructions cannot be more than 120 characters.',
-  }"
+        length: 'Instructions cannot be more than 120 characters.',
+      }"
       label="Message"
       name="message"
+      placeholder="Write your request here..."
       resize="none"
       type="textarea"
       validation="required|length:0,120"
       validation-visibility="dirty"
     />
-    <button class="btn base-btn" type="submit">Register</button>
+    <BaseBtn
+      :loading="loading"
+      text="Register"
+    />
   </FormKit>
 </template>
 
 <style lang="scss">
 textarea {
   resize: none;
-  width: 100%;
-  display: block;
 }
 
-ul.formkit-messages {
-  list-style: none;
-  padding: 0;
-
-  .formkit-message {
-    color: var(--color-danger);
-    font-size: toRem(12);
-  }
+.formkit-message {
+  font-size: toRem(10);
 }
 
 .formkit-inner {
   input, textarea {
     width: 100%;
-    padding: toRem(10);
   }
+}
+
+.formkit-wrapper {
+  max-width: 100%;
 }
 </style>
 
 <style lang="scss" scoped>
 .formkit-form {
   background-color: var(--color-white-100);
-  padding: toRem(16);
   border-radius: toRem(8);
-  margin-top: toRem(16);
+  display: flex;
+  flex-direction: column;
+  gap: toRem(8);
+
 
   p {
-    font-weight: bold;
-    font-size: toRem(18);
+    color: var(--color-black-600);
+    font-size: toRem(16);
   }
 
   .btn {
-    margin-top: toRem(12) !important;
+    align-self: start;
   }
 }
 
