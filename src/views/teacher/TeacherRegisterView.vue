@@ -2,36 +2,48 @@
 import { useCourseStore } from '@/store/course.js'
 import { ref } from 'vue'
 import BaseBtn from '@/components/global/BaseBtn.vue'
+import { reset } from '@formkit/core'
+import { useRouter } from 'vue-router'
 
 // States
+const baseURL = import.meta.env.VITE_BASE_URL
+const router = useRouter()
+const loading = ref(false)
 const courseStore = useCourseStore()
 const form = ref({
   name: '',
   lastname: '',
   email: '',
-  pass: '',
   desc: '',
   areas: []
 })
 
 async function submitHandler() {
-  const teacherIds = courseStore.instructorId.map((item) => {
-    return parseInt(item)
-  })
-  const id = teacherIds.length > 0 ? Math.max(...teacherIds) + 1 : 1
-  const payload = {
-    ...form.value,
-    id
-  }
-  const res = await fetch('https://edupress-701b9-default-rtdb.firebaseio.com/teachers.json', {
-    method: 'POST',
-    body: JSON.stringify(payload),
-    headers: {
-      'Content-Type': 'application/json'
+  try {
+    loading.value = true
+    const teacherIds = courseStore.instructorId.map((item) => {
+      return parseInt(item)
+    })
+    const id = teacherIds.length > 0 ? Math.max(...teacherIds) + 1 : 1
+    const payload = {
+      ...form.value,
+      id
     }
-  })
-  if (!res.ok) {
-    throw new Error('Failed to submit form')
+    const res = await fetch(baseURL + '/teachers.json', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (res.ok) {
+      reset('register__form')
+      await router.push('/teachers')
+    }
+  } catch (error) {
+    console.log('Failed to submit form', error)
+  } finally {
+    loading.value = false
   }
 }
 </script>
@@ -50,7 +62,7 @@ async function submitHandler() {
         v-model="form.name"
         label="Name"
         name="name"
-        placeholder="Jane Doe"
+        placeholder="Roza"
         type="text"
         validation="required"
         validation-visibility="dirty"
@@ -60,41 +72,29 @@ async function submitHandler() {
         v-model="form.lastname"
         label="Last name"
         name="lastname"
-        placeholder="Jane Doe"
+        placeholder="Shafiei"
         type="text"
         validation="required"
         validation-visibility="dirty"
-
+      />
+      <FormKit
+        v-model="form.hourlyRate"
+        label="Hourly Rate"
+        name="hourlyRate"
+        placeholder="10"
+        type="text"
+        validation="required"
+        validation-visibility="dirty"
       />
       <FormKit
         v-model="form.email"
         label="Email"
         name="email"
-        placeholder="vikas@school.edu"
+        placeholder="roza_shafiei@yahoo.com"
         type="email"
         validation="required|email"
         validation-visibility="dirty"
       />
-      <div class="double">
-        <FormKit
-          v-model="form.pass"
-          :validation-messages="{
-          matches: 'Please include at least one symbol',
-        }"
-          label="Password"
-          name="password"
-          placeholder="Your password"
-          type="password"
-          validation="required|length:6|matches:/[^a-zA-Z]/"
-        />
-        <FormKit
-          label="Confirm password"
-          name="password_confirm"
-          placeholder="Confirm password"
-          type="password"
-          validation="required|confirm"
-        />
-      </div>
       <FormKit
         v-model="form.desc"
         :validation-messages="{
@@ -102,6 +102,7 @@ async function submitHandler() {
   }"
         label="Description"
         name="message"
+        placeholder="I'am a front-end developer..."
         resize="none"
         type="textarea"
         validation="required|length:0,120"
@@ -114,17 +115,26 @@ async function submitHandler() {
             :options="courseStore.categories"
             label="Areas"
             type="checkbox"
-            validation="required|min:3"
+            validation="required"
           />
         </div>
       </div>
-      <BaseBtn class="btn base-btn" text="Register" type="submit" />
+      <BaseBtn :loading="loading" :style="{minWidth: '120px'}" class="btn base-btn" text="Register"
+               type="submit" />
     </FormKit>
   </main>
 </template>
 <style lang="scss">
 .formkit-wrapper {
   max-width: unset !important;
+}
+
+.formkit-inner {
+  background: var(--color-white-100);
+}
+
+[data-type=checkbox] .formkit-inner {
+  background: transparent;
 }
 </style>
 
@@ -141,7 +151,8 @@ async function submitHandler() {
   }
 
   .formkit-form {
-    border: 1px solid var(--color-white-200);
+    border: 1px solid var(--color-white-400);
+    background: var(--color-white-200);
     padding: toRem(16);
     border-radius: toRem(24);
   }
