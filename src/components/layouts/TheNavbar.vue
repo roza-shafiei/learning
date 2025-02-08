@@ -14,6 +14,7 @@ const { isSmDown } = useWindowResize()
       <ul class="navbar__links">
         <RouterLink to="/">home</RouterLink>
         <RouterLink to="/courses">courses</RouterLink>
+        <RouterLink to="/teachers">teachers</RouterLink>
       </ul>
       <!--        Login section-->
       <div class="navbar__login">

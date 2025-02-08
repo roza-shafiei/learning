@@ -24,6 +24,12 @@ const routes = [
     component: () => import('@/views/teacher/TeacherRegisterView.vue'),
     meta: { title: 'Registration' },
     name: 'teacherRegistration'
+  },
+  {
+    path: `/teachers`,
+    component: () => import('@/views/teacher/TeacherListView.vue'),
+    meta: { title: 'Teacher List' },
+    name: 'teacherList'
   }
 ]
 
