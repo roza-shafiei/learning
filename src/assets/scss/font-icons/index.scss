@@ -1,0 +1,375 @@
+@import 'variables';
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?2xc5bj');
+  src: url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?2xc5bj#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?2xc5bj') format('truetype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?2xc5bj') format('woff'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?2xc5bj##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+
+[class^='icons-'],
+[class*=' icons-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icons-score {
+  &:before {
+    content: $icons-score;
+  }
+}
+
+.icons-speaker {
+  &:before {
+    content: $icons-speaker;
+  }
+}
+
+
+.icons-key {
+  &:before {
+    content: $icons-key;
+  }
+}
+
+
+.icons-social-instagram {
+  &:before {
+    content: $icons-social-instagram;
+  }
+}
+
+
+.icons-activity {
+  &:before {
+    content: $icons-activity;
+  }
+}
+
+
+.icons-category {
+  &:before {
+    content: $icons-category;
+  }
+}
+
+.icons-play {
+  &:before {
+    content: $icons-play;
+  }
+}
+
+.icons-alert {
+  &:before {
+    content: $icons-alert;
+  }
+}
+
+.icons-check {
+  &:before {
+    content: $icons-check;
+  }
+}
+
+.icons-clock {
+  &:before {
+    content: $icons-clock;
+  }
+}
+
+.icons-refresh {
+  &:before {
+    content: $icons-refresh;
+  }
+}
+
+.icons-close {
+  &:before {
+    content: $icons-close;
+  }
+}
+
+.icons-search {
+  &:before {
+    content: $icons-search;
+  }
+}
+
+.icons-smile {
+  &:before {
+    content: $icons-smile;
+  }
+}
+
+.icons-minimize {
+  &:before {
+    content: $icons-minimize;
+  }
+}
+
+
+.icons-upload {
+  &:before {
+    content: $icons-upload;
+  }
+}
+
+.icons-align-left {
+  &:before {
+    content: $icons-align-left;
+  }
+}
+
+.icons-align-right {
+  &:before {
+    content: $icons-align-right;
+  }
+}
+
+.icons-align-center {
+  &:before {
+    content: $icons-align-center;
+  }
+}
+
+.icons-align-justify {
+  &:before {
+    content: $icons-align-justify;
+  }
+}
+
+.icons-stroke-on {
+  &:before {
+    content: $icons-stroke-on;
+  }
+}
+
+.icons-underline {
+  &:before {
+    content: $icons-underline;
+  }
+}
+
+
+.icons-chevron-down {
+  &:before {
+    content: $icons-chevron-down;
+  }
+}
+
+.icons-chevron-left {
+  &:before {
+    content: $icons-chevron-left;
+  }
+}
+
+.icons-chevron-right {
+  &:before {
+    content: $icons-chevron-right;
+  }
+}
+
+.icons-chevron-up {
+  &:before {
+    content: $icons-chevron-up;
+  }
+}
+
+.icons-edit {
+  &:before {
+    content: $icons-edit;
+  }
+}
+
+
+.icons-follow {
+  &:before {
+    content: $icons-follow;
+  }
+}
+
+.icons-fullscreen {
+  &:before {
+    content: $icons-fullscreen;
+  }
+}
+
+.icons-globe {
+  &:before {
+    content: $icons-globe;
+  }
+}
+
+
+.icons-header-profile {
+  &:before {
+    content: $icons-header-profile;
+  }
+}
+
+.icons-header-tweet {
+  &:before {
+    content: $icons-header-tweet;
+  }
+}
+
+.icons-home {
+  &:before {
+    content: $icons-home;
+  }
+}
+
+.icons-image {
+  &:before {
+    content: $icons-image;
+  }
+}
+
+.icons-layout {
+  &:before {
+    content: $icons-layout;
+  }
+}
+
+.icons-like {
+  &:before {
+    content: $icons-like;
+  }
+}
+
+.icons-logout {
+  &:before {
+    content: $icons-logout;
+  }
+}
+
+.icons-message {
+  &:before {
+    content: $icons-message;
+  }
+}
+
+.icons-minus {
+  &:before {
+    content: $icons-minus;
+  }
+}
+
+.icons-moon {
+  &:before {
+    content: $icons-moon;
+  }
+}
+
+.icons-more {
+  &:before {
+    content: $icons-more;
+  }
+}
+
+.icons-navigation-menu {
+  &:before {
+    content: $icons-navigation-menu;
+  }
+}
+
+.icons-notebook {
+  &:before {
+    content: $icons-notebook;
+  }
+}
+
+.icons-plus {
+  &:before {
+    content: $icons-plus;
+  }
+}
+
+.icons-profile {
+  &:before {
+    content: $icons-profile;
+  }
+}
+
+
+.icons-send {
+  &:before {
+    content: $icons-send;
+  }
+}
+
+.icons-share {
+  &:before {
+    content: $icons-share;
+  }
+}
+
+.icons-social-fecebook {
+  &:before {
+    content: $icons-social-fecebook;
+  }
+}
+
+.icons-social-link {
+  &:before {
+    content: $icons-social-link;
+  }
+}
+
+.icons-social-linkedin {
+  &:before {
+    content: $icons-social-linkedin;
+  }
+}
+
+.icons-social-mail {
+  &:before {
+    content: $icons-social-mail;
+  }
+}
+
+.icons-social-share {
+  &:before {
+    content: $icons-social-share;
+  }
+}
+
+.icons-social-telegram {
+  &:before {
+    content: $icons-social-telegram;
+  }
+}
+
+.icons-social-youtube {
+  &:before {
+    content: $icons-social-youtube;
+  }
+}
+
+.icons-trash {
+  &:before {
+    content: $icons-trash;
+  }
+}
+
+.icons-users {
+  &:before {
+    content: $icons-users;
+  }
+}

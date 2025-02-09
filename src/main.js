@@ -1,6 +1,7 @@
 import './assets/css/main.css'
 import 'vue-toast-notification/dist/theme-sugar.css'
 import './assets/scss/general.scss'
+import './assets/scss/font-icons/index.scss'
 import router from './router/index.js'
 import { createApp } from 'vue'
 import App from './App.vue'
