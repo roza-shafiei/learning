@@ -3,8 +3,8 @@ import { useCourseStore } from '@/store/course.js'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import BaseBadge from '@/components/global/BaseBadge.vue'
-import ContactTeacherForm from '@/components/pages/course/ContactTeacherForm.vue'
-import FaqList from '@/components/pages/course/FaqList.vue'
+import ContactTeacherForm from '@/components/pages/courses/ContactTeacherForm.vue'
+import FaqList from '@/components/pages/courses/FaqList.vue'
 
 // States
 const courseStore = useCourseStore()
@@ -122,7 +122,7 @@ function submitRequest(msg) {
                 Experience the thrill of success through vibrant testimonials, showcasing students
                 who have transformed their dreams into reality. My team and I are committed to
                 providing unparalleled support because we believe in empowering every learne</p>
-              <ContactTeacherForm @submit-form="submitRequest" />
+              <ContactTeacherForm class="form-request" @submit-form="submitRequest" />
             </div>
             <FaqList v-else />
           </Transition>
@@ -275,6 +275,11 @@ function submitRequest(msg) {
     }
   }
 
+}
+
+#contact-form {
+  margin-top: toRem(16);
+  padding: toRem(16);
 }
 
 .green-text {

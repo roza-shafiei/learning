@@ -3,7 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCourseStore } from '@/store/course.js'
 import CourseCard from '@/components/global/CourseCard.vue'
-import SidebarFilter from '@/components/pages/course/SidebarFilter.vue'
+import SidebarFilter from '@/components/pages/courses/SidebarFilter.vue'
 
 // States
 const route = useRoute()
