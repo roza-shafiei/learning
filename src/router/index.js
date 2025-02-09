@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useCourseStore } from '@/store/course.js'
+import { useAuthStore } from '@/store/auth.js'
 
 const routes = [
   {
@@ -22,7 +23,7 @@ const routes = [
   {
     path: `/teacher/registration`,
     component: () => import('@/views/teacher/TeacherRegisterView.vue'),
-    meta: { title: 'Registration' },
+    meta: { title: 'Registration', requireAuth: true },
     name: 'teacherRegistration'
   },
   {
@@ -30,6 +31,18 @@ const routes = [
     component: () => import('@/views/teacher/TeacherListView.vue'),
     meta: { title: 'Teacher List' },
     name: 'teacherList'
+  },
+  {
+    path: `/auth`,
+    component: () => import('@/views/AuthView.vue'),
+    meta: { title: 'Login/Sign in', requireUnAuth: true },
+    name: 'auth'
+  },
+  {
+    path: `/requests`,
+    component: () => import('@/views/RequestsView.vue'),
+    meta: { title: 'Requests', requireAuth: true },
+    name: 'requests'
   }
 ]
 
@@ -61,6 +74,7 @@ router.afterEach((to) => {
 
 router.beforeEach(async (to) => {
   const courseStore = useCourseStore()
+  const authStore = useAuthStore()
   if (!courseStore.courses.length) {
     await courseStore.getCourses()
   }
@@ -72,6 +86,12 @@ router.beforeEach(async (to) => {
     if (selectedCourse) {
       to.meta.title = selectedCourse.title
     }
+  }
+  // Handle authentication for some pages
+  if (to.meta.requireAuth && !authStore.isAuthenticated) {
+    return '/auth'
+  } else if (to.meta.requireUnAuth && authStore.isAuthenticated) {
+    return '/'
   }
 })
 export default router

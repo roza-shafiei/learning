@@ -2,6 +2,13 @@
 
 import TheFooter from '@/components/layouts/TheFooter.vue'
 import TheNavbar from '@/components/layouts/TheNavbar.vue'
+import { useAuthStore } from '@/store/auth.js'
+import { onMounted } from 'vue'
+
+const authStore = useAuthStore()
+onMounted(() => {
+  authStore.autoLogin()
+})
 </script>
 
 <template>
