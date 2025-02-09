@@ -2,12 +2,14 @@
 
 const props = defineProps({
   text: String,
-  loading: Boolean
+  loading: Boolean,
+  flat: Boolean
 })
+
 </script>
 
 <template>
-  <button class="btn base-btn" @click="$emit('click')">
+  <button :class="props.flat?'flat-btn':'btn'" class="base-btn" @click="$emit('click')">
     <span v-if="!loading"> {{ props.text }}</span>
     <span v-else :style="loading ? 'display:block':'display:none'" class="btn-ring"
     ></span>
@@ -17,6 +19,21 @@ const props = defineProps({
 <style lang="scss">
 .btn {
   @include base-btn;
+
+  span {
+    font-weight: 600;
+  }
+}
+
+.flat-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  span {
+    font-weight: 600;
+  }
 }
 
 .btn-ring:after {
