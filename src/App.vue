@@ -19,7 +19,11 @@ onMounted(() => {
     <div>
       <TheNavbar v-if="!isMdDown" />
       <TheMobileNavbar v-else />
-      <RouterView />
+      <RouterView v-slot="{Component}">
+        <Transition mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </div>
     <TheFooter />
   </div>
@@ -32,5 +36,19 @@ onMounted(() => {
   justify-content: space-between;
   height: 100%;
   min-height: 100vh;
+}
+
+.v-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.v-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
 }
 </style>
