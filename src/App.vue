@@ -1,10 +1,13 @@
 <script setup>
 
 import TheFooter from '@/components/layouts/TheFooter.vue'
-import TheNavbar from '@/components/layouts/TheNavbar.vue'
 import { useAuthStore } from '@/store/auth.js'
 import { onMounted } from 'vue'
+import TheMobileNavbar from '@/components/layouts/TheMobileNavbar.vue'
+import TheNavbar from '@/components/layouts/TheNavbar.vue'
+import useWindowResize from '@/composables/useResizeMethod.js'
 
+const { isMdDown } = useWindowResize()
 const authStore = useAuthStore()
 onMounted(() => {
   authStore.autoLogin()
@@ -14,7 +17,8 @@ onMounted(() => {
 <template>
   <div class="main-layout">
     <div>
-      <TheNavbar />
+      <TheNavbar v-if="!isMdDown" />
+      <TheMobileNavbar v-else />
       <RouterView />
     </div>
     <TheFooter />

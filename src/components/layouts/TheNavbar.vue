@@ -1,8 +1,16 @@
 <script setup>
 import TheLogo from '@/components/global/TheLogo.vue'
-import useWindowResize from '@/composables/useResizeMethod.js'
+import { useAuthStore } from '@/store/auth.js'
+import BaseBtn from '@/components/global/BaseBtn.vue'
+import { useRouter } from 'vue-router'
 
-const { isSmDown } = useWindowResize()
+const authStore = useAuthStore()
+const router = useRouter()
+
+// Methods
+function userLogout() {
+  authStore.logout()
+}
 </script>
 
 <template>
@@ -15,23 +23,24 @@ const { isSmDown } = useWindowResize()
         <RouterLink to="/">home</RouterLink>
         <RouterLink to="/courses">courses</RouterLink>
         <RouterLink to="/teachers">teachers</RouterLink>
+        <RouterLink v-if="authStore.isAuthenticated" to="/requests">requests</RouterLink>
       </ul>
       <!--        Login section-->
       <div class="navbar__login">
-        <img v-if="isSmDown" alt="profile-icon" src="/assets/icons/profile.png" />
-        <RouterLink v-else class="base-btn" to="/teacher/registration">
-          Register as a Teacher
-        </RouterLink>
+        <div v-if="authStore.isAuthenticated" class="profile">
+          <i class="profile__icon icons-profile" />
+          <ul class="profile__menu">
+            <RouterLink to="/teacher/registration">Register as a Teacher</RouterLink>
+            <li @click="userLogout">Logout</li>
+          </ul>
+        </div>
+        <BaseBtn v-else text="Login" @click="router.push('/auth')" />
       </div>
     </div>
   </nav>
 </template>
 
 <style lang="scss" scoped>
-.base-btn {
-  @include base-btn;
-}
-
 .navbar {
   display: flex;
   align-items: center;
@@ -52,6 +61,45 @@ const { isSmDown } = useWindowResize()
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .profile {
+      position: relative;
+      cursor: pointer;
+
+      &__icon {
+        font-size: toRem(22);
+      }
+
+      &__menu {
+        list-style: none;
+        background: var(--color-white-200);
+        cursor: pointer;
+        display: none;
+        position: absolute;
+        top: 80%;
+        right: 0;
+        min-width: toRem(200);
+        padding: 0.5rem 0;
+        z-index: 9;
+        border-radius: toRem(4);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        li, a {
+          font-size: toRem(14);
+          padding: 0.5rem 1rem;
+          display: block;
+          font-weight: normal;
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.05);
+          }
+        }
+      }
+
+      &:hover .profile__menu {
+        display: block;
+      }
+    }
   }
 
   &__links {
@@ -63,6 +111,10 @@ const { isSmDown } = useWindowResize()
       font-size: toRem(16);
       text-transform: capitalize;
       padding: toRem(15) toRem(14);
+
+      &:hover {
+        color: var(--color-primary)
+      }
     }
   }
 }
