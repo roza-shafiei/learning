@@ -62,7 +62,10 @@ const filteredCourses = computed(() => {
 
 <style lang="scss" scoped>
 .courses {
-  margin-top: toRem(50);
+  margin-top: toRem(70);
+  @include mq(md) {
+    margin-top: 0;
+  }
   display: flex;
   gap: toRem(32);
 

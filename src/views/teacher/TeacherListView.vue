@@ -70,7 +70,10 @@ function handleFormSubmit() {
 
 <style lang="scss" scoped>
 .teachers-page {
-  margin-top: toRem(50);
+  margin-top: toRem(70);
+  @include mq(md) {
+    margin-top: 0;
+  }
 
 
   .teachers {

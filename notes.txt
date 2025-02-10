@@ -18,10 +18,6 @@ sass
 - Pay attention to scroll to top in footer
 
 Todos:
--list courses
--view course and teacher details
--register as a coach
--contact a coach => coachId, message, email
 -routes: courses /course:id/home/notfound
 - animate main pages
 - register as a coach btn => you are login and you are not teacher
@@ -29,4 +25,13 @@ Todos:
 - show a page for teacher list with a contact btn
 - add loading css for btn
 -auth: try login, login, signup, log out
+
+
+//challenges
+- The issue is that Pinia stores are not components,
+ so useRouter() does not work directly inside them. useRouter() only works inside Vue components or the setup() function.
+
+ - firebase email/password authentication
+ - using navigation guards for dynamic title, check authenticatio
+
 

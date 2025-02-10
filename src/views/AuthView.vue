@@ -23,7 +23,12 @@ function handleSwitchForm(payload) {
 <style lang="scss" scoped>
 .user-form {
   max-width: 100%;
-  margin: toRem(50) auto 0;
+  margin-top: toRem(70);
+  @include mq(md) {
+    margin-top: 0;
+  }
+  margin-left: auto;
+  margin-right: auto;
 
   @include mq(md) {
     max-width: 80%;

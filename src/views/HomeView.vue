@@ -50,7 +50,7 @@ const centerBannerContent = computed(() => {
 
 <style lang="scss" scoped>
 .home-content {
-  margin-top: toRem(90);
+  margin-top: toRem(50);
   width: 100%;
 }
 

@@ -13,7 +13,6 @@ const course = ref({})
 const route = useRoute()
 const tabs = ['overview', 'instructor', 'faqs']
 const activeTab = ref(tabs[0])
-const loading = ref(false)
 
 // Lifecycle Hook
 onMounted(() => {
@@ -46,28 +45,6 @@ const teacher = computed(() => {
   return `by ${course.value.teacher}`
 })
 
-// Methods
-function submitRequest(msg) {
-  try {
-    loading.value = true
-    const payload = {
-      ...msg,
-      teacherId: course.value.teacherId
-    }
-    const res = fetch(`https://edupress-701b9-default-rtdb.firebaseio.com/requests/${payload.teacherId}.json`, {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    console.log(res)
-  } catch (e) {
-    console.log('error in course id view is: ', e)
-  } finally {
-    loading.value = false
-  }
-}
 </script>
 
 <template>
@@ -122,7 +99,8 @@ function submitRequest(msg) {
                 Experience the thrill of success through vibrant testimonials, showcasing students
                 who have transformed their dreams into reality. My team and I are committed to
                 providing unparalleled support because we believe in empowering every learne</p>
-              <ContactTeacherForm class="form-request" @submit-form="submitRequest" />
+              {{ course.teacherId }}
+              <ContactTeacherForm :id="course.teacherId" class="form-request" />
             </div>
             <FaqList v-else />
           </Transition>
@@ -134,7 +112,11 @@ function submitRequest(msg) {
 
 <style lang="scss" scoped>
 .course-id {
-  //header style
+  margin-top: toRem(70);
+  @include mq(md) {
+    margin-top: 0;
+  }
+
   &__header {
     background: var(--color-black-900);
 

@@ -94,7 +94,7 @@ function userLogout() {
   width: 100%;
   background: var(--color-white-100);
   z-index: 200;
-  padding: 1rem 0;
+  padding: toRem(12) 0;
 
   &__wrapper {
     display: flex;
@@ -137,7 +137,7 @@ function userLogout() {
     padding: 0;
     margin: 0;
 
-    li {
+    li:not(:last-child) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
@@ -201,6 +201,5 @@ function userLogout() {
 
 .login-btn {
   width: 100%;
-  margin-top: 1rem;
 }
 </style>

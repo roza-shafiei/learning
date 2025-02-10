@@ -9,7 +9,7 @@ const email = ref('')
 const message = ref('')
 const loading = ref(false)
 const $toast = useToast()
-
+const baseUrl = import.meta.env.VITE_BASE_URL
 
 // Props
 const props = defineProps({
@@ -27,7 +27,7 @@ async function submitRequest() {
       message: message.value,
       teacherId: props.id
     }
-    const res = await fetch(`https://edupress-701b9-default-rtdb.firebaseio.com/requests/${payload.teacherId}.json`, {
+    const res = await fetch(`${baseUrl}/requests.json`, {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
@@ -78,7 +78,7 @@ async function submitRequest() {
       placeholder="Write your request here..."
       resize="none"
       type="textarea"
-      validation="required|length:0,120"
+      validation="required|length:0,250"
       validation-visibility="dirty"
     />
     <BaseBtn

@@ -145,7 +145,12 @@ async function submitHandler() {
 <style lang="scss" scoped>
 .register {
   max-width: 100%;
-  margin: toRem(50) auto 0;
+  margin-top: toRem(70);
+  @include mq(md) {
+    margin-top: 0;
+  }
+  margin-right: auto;
+  margin-left: auto;
 
   @include mq(md) {
     max-width: 80%;
