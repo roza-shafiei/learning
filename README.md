@@ -1,4 +1,4 @@
-_# Vue.js Course Platform
+# Vue.js Course Platform
 
 A modern course platform built with Vue 3 and Firebase, allowing users to browse courses, register as teachers, and see
 users requests.
