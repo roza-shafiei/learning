@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import NotFoundView from '@/views/NotFoundView.vue'
 import { useCourseStore } from '@/store/course.js'
 import { useAuthStore } from '@/store/auth.js'
 
@@ -43,7 +44,13 @@ const routes = [
     component: () => import('@/views/RequestsView.vue'),
     meta: { title: 'Requests', requireAuth: true },
     name: 'requests'
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFoundView
   }
+
 ]
 
 
@@ -78,6 +85,7 @@ router.beforeEach(async (to) => {
   if (!courseStore.courses.length) {
     await courseStore.getCourses()
   }
+
   // Handle course details page
   if (to.name === 'course details') {
     const selectedCourse = courseStore.courses.find(
@@ -93,5 +101,6 @@ router.beforeEach(async (to) => {
   } else if (to.meta.requireUnAuth && authStore.isAuthenticated) {
     return '/'
   }
+  return true
 })
 export default router

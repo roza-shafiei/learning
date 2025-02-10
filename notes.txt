@@ -7,7 +7,6 @@ sass
 - Add directory structure like Shop project
 - Remove unused components
 - add store and router config
-- Consider default layout
 
 - VCS: Git
 - Navbar: just home and courses/teachers
@@ -19,12 +18,6 @@ sass
 
 Todos:
 -routes: courses /course:id/home/notfound
-- animate main pages
-- register as a coach btn => you are login and you are not teacher
-- if you are not login => login btn must be shown
-- show a page for teacher list with a contact btn
-- add loading css for btn
--auth: try login, login, signup, log out
 
 
 //challenges
@@ -32,6 +25,8 @@ Todos:
  so useRouter() does not work directly inside them. useRouter() only works inside Vue components or the setup() function.
 
  - firebase email/password authentication
- - using navigation guards for dynamic title, check authenticatio
+ - using navigation guards for dynamic title, check authentication
+ - filter courses
+ - using stores inside router guards/ it should be inside functions
 
 
