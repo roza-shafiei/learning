@@ -4,12 +4,16 @@ import { ref } from 'vue'
 import BaseBtn from '@/components/global/BaseBtn.vue'
 import { reset } from '@formkit/core'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/store/auth.js'
 
 // States
 const baseURL = import.meta.env.VITE_BASE_URL
 const router = useRouter()
 const loading = ref(false)
 const courseStore = useCourseStore()
+const authStore = useAuthStore()
+const token = authStore.token
+
 const form = ref({
   name: '',
   lastname: '',
@@ -29,7 +33,7 @@ async function submitHandler() {
       ...form.value,
       id
     }
-    const res = await fetch(baseURL + '/teachers.json', {
+    const res = await fetch(baseURL + '/teachers.json?auth=' + token, {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
