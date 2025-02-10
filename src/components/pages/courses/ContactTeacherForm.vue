@@ -13,7 +13,7 @@ const baseUrl = import.meta.env.VITE_BASE_URL
 
 // Props
 const props = defineProps({
-  id: String, Number
+  id: [String, Number]
 })
 
 // Emits
