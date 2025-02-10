@@ -5,6 +5,7 @@ import { ref } from 'vue'
 import { useToast } from 'vue-toast-notification'
 import { useAuthStore } from '@/store/auth.js'
 import { useRouter } from 'vue-router'
+import { reset } from '@formkit/core'
 
 // States
 const form = ref({})
@@ -56,6 +57,7 @@ async function userLogin() {
     $toast.error(error.message, { position: 'top-right' })
   } finally {
     loading.value = false
+    reset('login')
   }
 }
 </script>
@@ -80,6 +82,7 @@ async function userLogin() {
     />
     <FormKit
       v-model.trim="form.password"
+      autocomplete="current-password"
       label="Password"
       name="password"
       prefix-icon="password"

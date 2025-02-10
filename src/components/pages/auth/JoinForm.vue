@@ -50,6 +50,8 @@ async function userJoin() {
         position: 'top-right'
       })
       router.push('/requests')
+    } else {
+      throw new Error(data.message || 'Failed to Join')
     }
   } catch (error) {
     console.log('error in fetchData', error.message)
@@ -82,6 +84,7 @@ async function userJoin() {
     />
     <FormKit
       v-model.trim="form.password"
+      autocomplete="new-password"
       label="Password"
       name="password"
       prefix-icon="password"
