@@ -27,6 +27,11 @@ function userLogout() {
   authStore.logout()
   closeMenus()
 }
+
+function goToAuthPage() {
+  router.push('/auth')
+  closeMenus()
+}
 </script>
 
 <template>
@@ -78,7 +83,7 @@ function userLogout() {
             v-else
             class="login-btn"
             text="Login"
-            @click="router.push('/auth')"
+            @click="goToAuthPage"
           />
         </div>
       </div>
