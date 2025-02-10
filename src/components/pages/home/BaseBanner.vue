@@ -1,21 +1,27 @@
 <script setup>
 import BaseBtn from '@/components/global/BaseBtn.vue'
 
+const emits = defineEmits(['clickOnBtn'])
+
 const props = defineProps({
   item: {
     type: Object,
     required: true
   }
 })
+
+function clickOnBtn() {
+  emits('clickOnBtn')
+}
 </script>
 
 <template>
   <section class="banner">
     <div class="banner__content">
-      <p class="banner__content--more">{{ props.item.moreTxt }}</p>
-      <h3 class="banner__content--title">{{ props.item.title }}</h3>
-      <p class="banner__content--desc">{{ props.item.desc }}</p>
-      <BaseBtn :text="props.item.btnTxt" />
+      <p v-if="props.item.moreTxt" class="banner__content--more">{{ props.item.moreTxt }}</p>
+      <h3 v-if="props.item.title" class="banner__content--title">{{ props.item.title }}</h3>
+      <p v-if="props.item.desc" class="banner__content--desc">{{ props.item.desc }}</p>
+      <BaseBtn :text="props.item.btnTxt" @click="clickOnBtn" />
     </div>
     <div class="red-square">
       <img alt="icon" src="/assets/icons/pdf.png" />

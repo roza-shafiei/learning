@@ -1,7 +1,9 @@
 <script setup>
 
 import BaseBtn from '@/components/global/BaseBtn.vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const bannerImgSrs = {
   orangeBg: '/assets/images/banner/orangeBg.png',
   greenBg: '/assets/images/banner/greenBg.png',
@@ -25,7 +27,7 @@ const bannerImgSrs = {
         <p>We denounce with righteous indignation and dislike men who are so beguiled and
           demoralized
           that cannot trouble.</p>
-        <BaseBtn text="Find Course" />
+        <BaseBtn text="Find Course" @click="router.push('/#courses')" />
       </div>
 
     </div>

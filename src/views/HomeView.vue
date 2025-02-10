@@ -8,6 +8,7 @@ import StaticList from '@/components/pages/home/StaticList.vue'
 import GrowSkillCard from '@/components/pages/home/GrowSkillCard.vue'
 import CenterContentBanner from '@/components/pages/home/CenterContentBanner.vue'
 import HeaderBanner from '@/components/global/HeaderBanner.vue'
+import router from '@/router/index.js'
 
 // Computed Properties
 const bannerContent = computed(() => {
@@ -25,7 +26,7 @@ const centerBannerContent = computed(() => {
     moreTxt: 'PROVIDING AMAZING',
     desc: 'The next level of LMS WordPress Theme. Learn anytime and anywhere.',
     btnTxt: 'Explorer course',
-    btnUrl: '/'
+    btnUrl: '/#courses'
   }
 })
 </script>
@@ -38,11 +39,13 @@ const centerBannerContent = computed(() => {
                  title="Top Categories" />
       <CategoryList />
       <TitleCard btn-txt="All courses"
+                 btn-url="/courses"
                  desc="Explore our Popular Courses" title="Featured courses" />
-      <CourseList />
-      <BaseBanner :item="bannerContent" class="base-banner" />
+      <CourseList id="courses" />
+      <BaseBanner :item="bannerContent" class="base-banner"
+                  @click-on-btn="router.push('/courses')" />
       <StaticList />
-      <GrowSkillCard />
+      <GrowSkillCard @click-on-btn="router.push('/#courses')" />
       <CenterContentBanner :item="centerBannerContent" />
     </main>
   </section>

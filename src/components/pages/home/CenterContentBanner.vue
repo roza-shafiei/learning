@@ -1,6 +1,8 @@
 <script setup>
 import BaseBtn from '@/components/global/BaseBtn.vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const props = defineProps({
   item: {
     type: Object,
@@ -15,7 +17,7 @@ const props = defineProps({
       <p class="center-banner__content--more">{{ props.item.moreTxt }}</p>
       <h3 class="center-banner__content--title">{{ props.item.title }}</h3>
       <p class="center-banner__content--desc">{{ props.item.desc }}</p>
-      <BaseBtn :text="props.item.btnTxt" />
+      <BaseBtn :text="props.item.btnTxt" @click="router.push(`${props.item.btnUrl}`)" />
     </div>
     <img alt="wordpress theme images" class="images images--yellow"
          src="/assets/images/home/banner1.png">

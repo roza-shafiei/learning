@@ -2,9 +2,14 @@
 import BaseBtn from '@/components/global/BaseBtn.vue'
 import { computed } from 'vue'
 
+const emits = defineEmits(['clickOnBtn'])
 const listItem = computed(() => {
   return ['Lorem', 'Lorem IpSum', 'Certification', 'Certification', 'Certification']
 })
+
+function emitClick() {
+  emits('clickOnBtn')
+}
 </script>
 
 <template>
@@ -27,7 +32,7 @@ with LearnPress LMS" src="/assets/images/home/grow-skill.png">
           <span>{{ item }}</span>
         </li>
       </ul>
-      <BaseBtn text="Explorer course" />
+      <BaseBtn text="Explorer course" @click="emitClick" />
     </div>
   </section>
 </template>
