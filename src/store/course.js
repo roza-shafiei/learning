@@ -49,30 +49,24 @@ export const useCourseStore = defineStore('course', () => {
     activeFilter.value = payload
   }
 
+
   function searchCourses(filters) {
     let filteredCourses = courses.value
+    console.log('payload', filters)
 
     if (filters.category && filters.category.length > 0) {
       filteredCourses = filteredCourses.filter(course =>
         filters.category.includes(course.category)
       )
-      console.log('filteredCourses', filteredCourses)
     }
 
     if (filters.instructor && filters.instructor.length > 0) {
+      console.log('mmm mmm m mmm', filters.instructor)
       filteredCourses = filteredCourses.filter(course =>
         filters.instructor.includes(course.teacher)
       )
     }
 
-    if (filters.price.length > 0) {
-      console.log('filteredPrice', filters.price)
-      if (filters.price.includes('free')) {
-        filteredCourses = filteredCourses.filter(course => course.price === 0)
-      } else {
-        filteredCourses = filteredCourses.filter(course => course.price > 0)
-      }
-    }
     return filteredCourses
   }
 

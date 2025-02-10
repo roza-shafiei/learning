@@ -51,6 +51,11 @@ with LearnPress LMS" src="/assets/images/home/grow-skill.png">
 
   .img-container {
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    @include mq(md) {
+      width: 70%;
+    }
     @include mq(lg) {
       width: 50%;
     }

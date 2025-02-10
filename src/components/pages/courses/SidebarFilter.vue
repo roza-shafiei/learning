@@ -5,17 +5,13 @@ import { useCourseStore } from '@/store/course.js'
 const courseStore = useCourseStore()
 const activeFilters = ref({
   category: [],
-  instructor: [],
-  price: []
+  instructor: []
 })
 const filters = computed(() => {
   return [
     { title: 'Course category', items: courseStore.categories }, {
       title: 'Instructor',
       items: courseStore.courseInstructors
-    }, {
-      title: 'Price',
-      items: ['Paid', 'Free']
     }
   ]
 })
@@ -56,7 +52,7 @@ function updateFilter(title, item, event) {
 <style lang="scss" scoped>
 .filter {
   max-width: toRem(240);
-  width: 100%;
+  min-width: toRem(150);
   display: flex;
   flex-direction: column;
   gap: toRem(10);
