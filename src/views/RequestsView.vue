@@ -83,7 +83,8 @@ function receiverEmail(id) {
         <div>
           <span>Receiver: </span>
           <a
-            :href="`mailto:${request.email}`">{{ receiverEmail(request.teacherId) }}
+            :href="`mailto:${receiverEmail(request.teacherId)}`">{{ receiverEmail(request.teacherId)
+            }}
           </a>
 
         </div>
