@@ -87,7 +87,7 @@ router.beforeEach(async (to) => {
   }
 
   // Handle course details page
-  if (to.name === 'course details') {
+  if (to.name === 'courseDetails') {
     const selectedCourse = courseStore.courses.find(
       (item) => item.id === parseInt(to.params.id)
     )
