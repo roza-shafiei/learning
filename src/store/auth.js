@@ -1,42 +1,116 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
+import router from '@/router/index.js'
 
-export const useAuthStore
-  = defineStore('auth', () => {
-  const tokenExpiration = ref(null)
+const AUTH_STORAGE_KEYS = {
+  TOKEN: 'token',
+  USER_ID: 'userId',
+  EXPIRATION: 'expirationDate'
+}
+
+export const useAuthStore = defineStore('auth', () => {
+  // State
   const token = ref(null)
   const userId = ref(null)
+  const expirationTimer = ref(null)
 
-  function setUser(payload) {
-    tokenExpiration.value = payload.expiresIn
-    token.value = payload.idToken
-    userId.value = payload.localId
-    if (payload.setInStorage) {
-      localStorage.setItem('token', token.value)
-      localStorage.setItem('userId', userId.value)
-    }
-  }
-
-  const isAuthenticated = computed(() => {
-    return !!token.value
+  // Getters
+  const isAuthenticated = computed(() => Boolean(token.value))
+  const isSessionExpired = computed(() => {
+    const expirationDate = localStorage.getItem(AUTH_STORAGE_KEYS.EXPIRATION)
+    if (!expirationDate) return true
+    return new Date().getTime() > parseInt(expirationDate)
   })
 
-  function autoLogin() {
-    const idToken = localStorage.getItem('token')
-    const localId = localStorage.getItem('userId')
-    if (idToken && localId) {
-      const payload = { idToken, localId, setInStorage: false }
-      setUser(payload)
+  // Actions
+  function setUser(payload) {
+    token.value = payload.idToken
+    userId.value = payload.localId
+
+    const expirationDate = new Date().getTime() + Number(payload.expiresIn) * 1000
+
+    if (payload.setInStorage) {
+      persistAuthData(expirationDate)
     }
+
+    scheduleLogout(expirationDate)
+  }
+
+  function persistAuthData(expirationDate) {
+    if (!token.value || !userId.value) return
+
+    localStorage.setItem(AUTH_STORAGE_KEYS.TOKEN, token.value)
+    localStorage.setItem(AUTH_STORAGE_KEYS.USER_ID, userId.value)
+    localStorage.setItem(AUTH_STORAGE_KEYS.EXPIRATION, expirationDate.toString())
+  }
+
+  function scheduleLogout(expirationDate) {
+    const timeUntilExpiration = expirationDate - new Date().getTime()
+
+    // Clear any existing timer
+    if (expirationTimer.value) {
+      clearTimeout(expirationTimer.value)
+    }
+
+    // Set new timer
+    expirationTimer.value = setTimeout(() => {
+      logout()
+    }, timeUntilExpiration)
+  }
+
+  function autoLogin() {
+    if (isSessionExpired.value) {
+      logout()
+      return false
+    }
+
+    const storedToken = localStorage.getItem(AUTH_STORAGE_KEYS.TOKEN)
+    const storedUserId = localStorage.getItem(AUTH_STORAGE_KEYS.USER_ID)
+    const storedExpiration = localStorage.getItem(AUTH_STORAGE_KEYS.EXPIRATION)
+
+    if (!storedToken || !storedUserId || !storedExpiration) {
+      return false
+    }
+
+    const expiresIn = (parseInt(storedExpiration) - new Date().getTime()) / 1000
+
+    setUser({
+      idToken: storedToken,
+      localId: storedUserId,
+      expiresIn,
+      setInStorage: false
+    })
+
+    return true
   }
 
   function logout() {
-    localStorage.removeItem('token')
-    localStorage.removeItem('userId')
-    tokenExpiration.value = null
     token.value = null
     userId.value = null
+
+    if (expirationTimer.value) {
+      clearTimeout(expirationTimer.value)
+      expirationTimer.value = null
+    }
+
+    Object.values(AUTH_STORAGE_KEYS).forEach(key => {
+      localStorage.removeItem(key)
+    })
+    router.replace('/')
   }
 
-  return { autoLogin, setUser, token, isAuthenticated, logout }
+  return {
+    // State
+    token,
+    userId,
+
+    // Getters
+    isAuthenticated,
+    isSessionExpired,
+
+    // Actions
+    setUser,
+    autoLogin,
+    logout
+  }
 })
